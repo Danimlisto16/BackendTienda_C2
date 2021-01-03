@@ -1,0 +1,60 @@
+package com.tienda.backend.controllers;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.tienda.backend.models.entities.DetalleFactura;
+import com.tienda.backend.services.interfaces.IDetalleFacturaService;
+
+@CrossOrigin(origins="http://localhost:4200")
+@RestController
+@RequestMapping("/api/detfactura")
+
+public class DetalleFacturaController {
+	
+	@Autowired
+	private IDetalleFacturaService service;
+	
+	@GetMapping("/{id}")
+	public DetalleFactura retrieve(@PathVariable(value="id") Long id) {
+		return service.findById(id);
+	}
+	
+	@GetMapping("")
+	public List<DetalleFactura> list() {
+		return service.findAll();
+	}
+	
+	@PostMapping("")
+	@ResponseStatus(HttpStatus.CREATED)
+	public DetalleFactura create(@RequestBody DetalleFactura detalleFactura) {		
+		service.save(detalleFactura);
+		return detalleFactura;
+	}
+	
+	@PutMapping("/{id}")
+	@ResponseStatus(HttpStatus.CREATED)
+	public DetalleFactura update(@RequestBody DetalleFactura detalleFactura, @PathVariable Long id) {		 			
+		service.save(detalleFactura);
+		return detalleFactura;
+	}
+	
+	@DeleteMapping("/{id}")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void delete(@PathVariable Long id) {
+		service.delete(id);
+	}
+
+}
