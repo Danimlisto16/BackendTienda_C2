@@ -16,3 +16,7 @@ bin-release/
 # Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
 # should NOT be excluded as they contain compiler settings and other important
 # information for Eclipse / Flash Builder.
+*.properties
+Backend/backend_tienda_c2/target/classes/META-INF/MANIFEST.MF
+Backend/backend_tienda_c2/target/classes/com/tienda/backend/BackendTiendaC2Application.class
+Backend/backend_tienda_c2/target/classes/META-INF/maven/com.tienda.backend/backend_tienda_c2/pom.properties
