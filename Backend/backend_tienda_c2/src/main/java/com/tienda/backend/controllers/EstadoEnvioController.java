@@ -20,14 +20,16 @@ public class EstadoEnvioController {
 	@Autowired
 	private IEstadoEnvioService service;
 	
+	@GetMapping("")
+	public List<EstadoEnvio> list(){
+		return service.findAll();
+	}
+	
 	@GetMapping("/{id}")
 	public EstadoEnvio retrive(@PathVariable(value="id") Long id){
 		return service.findById(id);
 	}
 	
-	@GetMapping("")
-	public List<EstadoEnvio> list(){
-		return service.findAll();
-	}
+	
 
 }

@@ -20,14 +20,16 @@ public class EstadoPagoController {
 	@Autowired
 	private IEstadoPagoService service;
 	
+	@GetMapping("")
+	public List<EstadoPago> list(){
+		return service.findAll();
+	}
+	
 	@GetMapping("/{id}")
 	public EstadoPago retrive(@PathVariable(value="id") Long id){
 		return service.findById(id);
 	}
 	
-	@GetMapping("")
-	public List<EstadoPago> list(){
-		return service.findAll();
-	}
+	
 
 }
