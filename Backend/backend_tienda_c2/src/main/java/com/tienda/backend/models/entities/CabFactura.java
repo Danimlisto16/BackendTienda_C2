@@ -7,6 +7,8 @@ import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,8 +22,6 @@ import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.tienda.backend.models.entities.EstadoEnvio;
-import com.tienda.backend.models.entities.EstadoPago;
 
 @Table(name="Cab_Factura")
 @Entity
@@ -52,13 +52,14 @@ public class CabFactura implements Serializable{
 	@ManyToOne
 	private Client cliente;
 	
-	@JoinColumn(name="fk_estadoenvio", referencedColumnName="id_estenvio")
-	@ManyToOne
+	@Column(name = "estado_envio")	
+	@Enumerated(value = EnumType.STRING)
 	private EstadoEnvio estadoenvio;
 	
-	@JoinColumn(name="fk_estadopago", referencedColumnName="id_estpago")
-	@ManyToOne
+	@Column(name = "estado_pago")	
+	@Enumerated(value = EnumType.STRING)
 	private EstadoPago estadopago;
+	
 	
 	@OneToMany(mappedBy = "cabfactura", fetch = FetchType.LAZY)
 	private List<DetalleFactura> detfacturas;
@@ -96,22 +97,6 @@ public class CabFactura implements Serializable{
 		this.cliente = cliente;
 	}
 
-	public EstadoEnvio getEstadoenvio() {
-		return estadoenvio;
-	}
-
-	public void setEstadoenvio(EstadoEnvio estadoenvio) {
-		this.estadoenvio = estadoenvio;
-	}
-
-	public EstadoPago getEstadopago() {
-		return estadopago;
-	}
-
-	public void setEstadopago(EstadoPago estadopago) {
-		this.estadopago = estadopago;
-	}
-
 	public Calendar getFecha() {
 		return fecha;
 	}
@@ -128,7 +113,22 @@ public class CabFactura implements Serializable{
 		this.detfacturas = detfacturas;
 	}
 
-	
+	public EstadoEnvio getEstadoenvio() {
+		return estadoenvio;
+	}
+
+	public void setEstadoenvio(EstadoEnvio estadoenvio) {
+		this.estadoenvio = estadoenvio;
+	}
+
+	public EstadoPago getEstadopago() {
+		return estadopago;
+	}
+
+	public void setEstadopago(EstadoPago estadopago) {
+		this.estadopago = estadopago;
+	}
+
 	
 
 }
