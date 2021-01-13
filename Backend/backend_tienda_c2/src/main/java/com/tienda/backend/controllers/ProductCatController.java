@@ -20,7 +20,7 @@ import com.tienda.backend.services.interfaces.IProduct_CategoryService;
 
 @CrossOrigin(origins="http://localhost:4200")
 @RestController
-@RequestMapping("/api/product_cat")
+@RequestMapping("/api/productcat")
 public class ProductCatController {
 	
 	@Autowired
